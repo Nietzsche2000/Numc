@@ -1,0 +1,30 @@
+Task 4: PERFORMANCE AND OPTIMIZATION
+
+In order to increase the performance of the provided functions, the following strategies were implemented:
+
+1. Cache Blocking:
+    a) Cache blocking, as covered in the Labs, was implemented to enhance the performance of memory accesses and writes.
+    In order to perform cache blocking, the following strategies were in place:
+        1) In the very beginning, research was done on the Intel Microprocessors with respect to their memory specifications, L1, L2, L3.
+            With that in place, the memory allocation was placed on the 64 byte boundary, aligned with the caches, in order to prevent
+            false sharing, low hit rate, etc.
+        2) Following that, the multiplication algorithm was implemented using the block size of 32, which was manually tuned to perform
+            the best on the Hive machines.
+
+    b) Several experiments were performed to find the optimal factors for cache performance.
+2. SIMD:
+    a) Intel Intrinsics were used extensively wherever possible. Several bit hacks were used in conjunction with SIMD to improve performance.
+3. OPEN MP:
+    a) Open MP pragmas were used wherever appropriate to improve performance.
+4. INFINITY AND ALL:
+    a) Floating point Infinity rule: Infinity + x = Infinity was exploited in power. The idea being if infinity why perform more operations on it.
+    b) For negate and absolute functions, the boolean bit arithmetic was used.
+        1) In Negate, xoring the value with -0.0 was performed to result in negation.
+        2) In abs, and not of -0.0 was performed to result in absolute value.
+
+
+Task 1:
+    1. In order for memory to be aligned to 64 byte boundary, the memory aligned allocation was used along with memory aligned free. For this reason, manual
+        zeroing of the memory was done using SIMD and Open MP.
+    2. For deallocate, a recursive algorithm was used, in order to exploit the underlying graph structure of matrix allocation. The idea holding on the law,
+        deallocate will not be called twice on the same memory.

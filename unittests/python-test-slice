@@ -1,0 +1,10 @@
+
+
+import dumbpy as dp
+import numc as nc
+
+A = nc.Matrix(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+B = nc.Matrix(3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+A[0:2, 0:2]
+A[0:2, 0:2] + B[0:2, 0:2]
